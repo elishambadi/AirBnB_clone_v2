@@ -1,5 +1,6 @@
+#!/urs/bin/python3
 """
-The Fabric script generates a tgz archive from contents of web static
+A Fabric script to generate a tgz archive from contents of web static
 """
 
 from datetime import datetime
@@ -8,7 +9,7 @@ from os.path import isdir
 
 
 def do_pack():
-    """Packs all content into a .tgz archiev"""
+    """Packs all content into a .tgz archive"""
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if isdir("versions") is False:
