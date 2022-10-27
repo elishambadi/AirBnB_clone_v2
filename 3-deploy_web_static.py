@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+"""
+   Deploying the configured server
+"""
+
 import os
 from datetime import datetime
 from fabric.api import *
@@ -9,7 +14,7 @@ env.hosts = ['34.239.246.45', '54.165.80.30']
 
 def do_pack():
     '''
-        Creating an archive with the file in web_static folder
+        Creating .tgz archive of /web-static
     '''
     now = datetime.now()
     filename = "versions/web_static_{}{}{}{}{}{}.tgz".format(now.year,
@@ -29,7 +34,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     '''
-        Deploys an archive to the web servers
+        Deploy the archive to the web servers
     '''
     name = archive_path.split("/")[1]
     if not os.path.exists(archive_path):
@@ -69,7 +74,7 @@ def do_deploy(archive_path):
 
 def deploy():
     '''
-        Interface for set-up functions
+        Function interface
     '''
     path = do_pack()
     if path is None:
