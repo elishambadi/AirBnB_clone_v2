@@ -1,4 +1,3 @@
-#!/urs/bin/python3
 """
 A Fabric script to generate a tgz archive from contents of web static
 """
@@ -17,5 +16,6 @@ def do_pack():
         file_name = "versions/web_static_{}.tgz".format(date)
         local("tar -cvzf {} web_static".format(file_name))
         return file_name
-    except:
+    except Exception as e:
+        print(e)
         return None
