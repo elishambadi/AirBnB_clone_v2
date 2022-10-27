@@ -80,4 +80,4 @@ def deploy():
     if path is None:
         return False
     value = do_deploy(path)
-    return 
+    return
