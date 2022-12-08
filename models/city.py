@@ -1,17 +1,26 @@
-#!/usr/bin/python3
-""" City Model with SQLAlchemy"""
+
+
+#!/usr/bin/python
+"""class City"""
+import models
 from models.base_model import BaseModel, Base
+from os import getenv
+import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from models import storage_type
+
 
 class City(BaseModel, Base):
-    """ The city class, contains state ID and name """
-    __tablename__ = 'cities'
-    if storage_type == 'db':
-        name = Column(String(128), nullable=False)
+    """city Oject"""
+    if models.storage_type == "db":
+        __tablename__ = 'cities'
         state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
-        places = relationship('Place', backref='cities', cascade='all, delete, delete-orphan')
+        name = Column(String(128), nullable=False)
+        places = relationship("Place", backref="cities")
     else:
         state_id = ""
         name = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes city"""
+        super().__init__(*args, **kwargs)
